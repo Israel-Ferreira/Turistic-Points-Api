@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::CitiesController < API::V1::ApiController
+class Api::V1::CitiesController < Api::V1::ApiController
   before_action :set_city, only: %i[show update destroy]
 
   def index
@@ -47,6 +47,6 @@ class Api::V1::CitiesController < API::V1::ApiController
   end
 
   def serialize_city_to_json(city)
-    CitySerializer.new(city).serialized_json
+    CitySerializer.new(city,{include: [:turistic_points]}).serialized_json
   end
 end
